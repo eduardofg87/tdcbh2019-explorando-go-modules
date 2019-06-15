@@ -65,7 +65,7 @@ func exampleNewHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Create the image converter
 	converter := convert.NewImageConverter()
-	imageFilename := "./go.png"
+	imageFilename := "go.png"
 	fmt.Print(converter.ImageFile2ASCIIString(imageFilename, &convertOptions))
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
