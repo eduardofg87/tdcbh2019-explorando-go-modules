@@ -4,11 +4,14 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
+	//"os/exec"
 	"github.com/GuilhermeCaruso/bellt"
+	//"github.com/eduardofg87/img2ascii_go"
+	"github.com/qeesung/image2ascii/convert"
+	_ "image/jpeg"
+	_ "image/png"
 )
 
-//main
 func main() {
 
 	router := bellt.NewRouter()
@@ -19,7 +22,7 @@ func main() {
 		middlewareTwo,
 	), "GET")
 
-	router.HandleFunc("/contact", bellt.Use(
+	router.HandleFunc("/tdc", bellt.Use(
 		exampleNewHandler,
 		middlewareOne,
 		middlewareTwo,
@@ -52,10 +55,21 @@ func exampleHandler(w http.ResponseWriter, r *http.Request) {
 
 func exampleNewHandler(w http.ResponseWriter, r *http.Request) {
 	//rv := bellt.RouteVariables(r)
+	
+	//output, _ := exec.Command("image2ascii_go -f go.png").Output()
 
+    //fmt.Println(output)
+	convertOptions := convert.DefaultOptions
+	convertOptions.FixedWidth = 100
+	convertOptions.FixedHeight = 40
+
+	// Create the image converter
+	converter := convert.NewImageConverter()
+	imageFilename := "./go.png"
+	fmt.Print(converter.ImageFile2ASCIIString(imageFilename, &convertOptions))
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	w.Write([]byte(`{"msg": "Works"}`))
+	w.Write([]byte(`{"msg": "Gopher printed!"}`))
 }
 
 func middlewareOne(next http.HandlerFunc) http.HandlerFunc {
