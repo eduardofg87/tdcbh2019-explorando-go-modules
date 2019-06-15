@@ -17,5 +17,6 @@ RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build
 # final stage
 FROM scratch
 COPY --from=builder /app/tdcbh2019-explorando-go-modules /app/
+COPY go.png /app/
 EXPOSE 8080
 ENTRYPOINT ["/app/tdcbh2019-explorando-go-modules"]
