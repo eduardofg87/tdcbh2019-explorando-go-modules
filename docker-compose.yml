@@ -1,0 +1,6 @@
+version: "3"
+services:
+    tdcbh2019-explorando-go-modules:
+        ports:
+            - '8090:8090'
+        image: tdcbh2019-explorando-go-modules
