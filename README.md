@@ -29,4 +29,4 @@ Palestrante: Eduardo Figueiredo Gonçalves - @eduardofg87
 `sudo docker build -t tdcbh2019-explorando-go-modules .`
 
 ## RUN
-`sudo docker run -p 8080:8080 tdcbh2019-explorando-go-modules`
+`sudo docker run -p 8090:8090 tdcbh2019-explorando-go-modules`
